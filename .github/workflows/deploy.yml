@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy-stg:
+        description: "Deploy to staging"
+        required: false
+        default: false
+        type: boolean
+      deploy-prod:
+        description: "Deploy to production"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  app-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure node
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Deploy stg
+        if: ${{inputs.deploy-stg == true}}
+        run: Deploying to staging...
+
+      - name: Deploy prod
+        if: ${{inputs.deploy-prod == true}}
+        run: Deploying to production...
