@@ -13,7 +13,7 @@ runs:
         script: |
           const { QUOTE_RESPONSE } = process.env;
           const response = JSON.parse(QUOTE_RESPONSE);
-	        const quote = response[0].q;
+          const quote = response[0].q;
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
