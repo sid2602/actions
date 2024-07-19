@@ -20,7 +20,7 @@ jobs:
         run: echo "Deploying to staging..."
 
       - name: Deploy prod
-        run: echo "Deploying to production...""
+        run: echo "Deploying to production..."
 
       - name: Comment with quote
         uses: ./.github/actions/quote
