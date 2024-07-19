@@ -7,6 +7,9 @@ jobs:
   app-setup:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up
         uses: ./.github/actions/setup
 
