@@ -3,10 +3,17 @@ import "./App.css";
 import reactLogo from "./assets/react.svg";
 import { simpleFunction } from "./simpleFunction";
 import viteLogo from "/vite.svg";
-
+const r = JSON.stringify([
+	{
+		q: "Words used to attract the dull of wit are not to be relied on.",
+		a: "Huang Po",
+		h: "<blockquote>&ldquo;Words used to attract the dull of wit are not to be relied on.&rdquo; &mdash; <footer>Huang Po</footer></blockquote>",
+	},
+]);
 function App() {
 	const [count, setCount] = useState(0);
-
+	const response = JSON.parse(r);
+	response[0].q;
 	return (
 		<>
 			<div>

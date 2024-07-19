@@ -1,0 +1,23 @@
+name: Pull-request
+
+on:
+  pull_request:
+
+jobs:
+  app-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up
+        uses: ./.github/actions/setup
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Deploy stg
+        run: echo "Deploying to staging..."
+
+      - name: Deploy prod
+        run: echo "Deploying to production...""
+
+      - name: Comment with quote
+        uses: ./.github/actions/quote
