@@ -1,0 +1,26 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  app-setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up
+        uses: ./.github/actions/setup
+
+      - name: Run tests
+        run: npm run test
+
+      - name: failure
+        if: ${{ failure() }}
+        run: |
+          curl -X POST 'https://webhook.site/b55a301d-9270-4886-afdb-6c35861c67e8' \
+            -H 'content-type: application/json' \
+            -d $'{"job": "healthcheck", "status": "failure"}'
