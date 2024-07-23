@@ -1,19 +1,16 @@
+import { useStatus } from "@featurevisor/react";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
+import { Feature } from "./feature";
 import { simpleFunction } from "./simpleFunction";
 import viteLogo from "/vite.svg";
-const r = JSON.stringify([
-	{
-		q: "Words used to attract the dull of wit are not to be relied on.",
-		a: "Huang Po",
-		h: "<blockquote>&ldquo;Words used to attract the dull of wit are not to be relied on.&rdquo; &mdash; <footer>Huang Po</footer></blockquote>",
-	},
-]);
+
 function App() {
 	const [count, setCount] = useState(0);
-	const response = JSON.parse(r);
-	response[0].q;
+
+	const { isReady } = useStatus();
+	console.log(isReady);
 	return (
 		<>
 			<div>
@@ -37,6 +34,7 @@ function App() {
 				Click on the Vite and React logos to learn more
 			</p>
 			<p>{simpleFunction()}</p>
+			{isReady ? <Feature /> : null}
 		</>
 	);
 }
